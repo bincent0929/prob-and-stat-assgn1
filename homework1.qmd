@@ -158,9 +158,20 @@ C. IQR = `{python} sleep_data_iqr`
 
 D. Suppose the 5th data value was recorded as `55` instead of `5.5`. Recompute new range and SD:
 
-* New range = `_____`
-* New SD = `_____` (round to 2 decimals)
-* New IQR = `_____`
+``` {python}
+#| echo: false
+updated_sleep_data = [6.5, 6.5, 7, 7, 55, 7.5, 6, 8.5, 8, 5.5, 5.5, 5, 6.5, 8, 5]
+# could use a function from numpy, but that isn't needed
+updated_sleep_data_range = max(updated_sleep_data) - min(updated_sleep_data)
+updated_sleep_data_stdev = stdev(updated_sleep_data)
+# splits the data into 4 ranges to do an iqr with q3 and q1
+updated_q1, updated_q2, updated_q3 = quantiles(updated_sleep_data, n=4)
+updated_sleep_data_iqr = updated_q3 - updated_q1
+```
+
+* New range = `{python} updated_sleep_data_range`
+* New SD = `{python} f'{updated_sleep_data_stdev:.2f}'` (round to 2 decimals)
+* New IQR = `{python} updated_sleep_data_iqr`
 
 
 
@@ -168,14 +179,34 @@ D. Suppose the 5th data value was recorded as `55` instead of `5.5`. Recompute n
 ## 9 — Compute mean & median; skewness
 
 Grades: `98, 92, 91, 91, 87, 85, 85, 82, 77, 76, 61`
-Mean = `_____`
-Median = `_____`
 
+``` {python}
+#| echo: false
+from statistics import median
+grades = [98, 92, 91, 91, 87, 85, 85, 82, 77, 76, 61]
+grades_mean = mean(grades)
+grades_median = median(grades)
+```
 
+Mean = `{python} grades_mean`
+
+Median = `{python} grades_median`
 
 - Present the Histogram
 
+``` {python}
+#| echo: false
+from matplotlib import pyplot as plt
+
+plt.hist(grades, bins=4, color='purple', edgecolor='black')
+
+plt.xlabel('Grades')
+plt.ylabel('Frequency')
+plt.title('Grades Histogram')
+
+plt.show()
+```
 
 - Is this dataset `SKEWED RIGHT`, `SYMMETRIC`, or `SKEWED LEFT`?
 
-
+`SKEWED RIGHT`
