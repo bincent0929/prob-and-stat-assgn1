@@ -1,0 +1,4 @@
+jupyter
+matplotlib
+# ggplot2
+# seaborn
