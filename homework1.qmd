@@ -3,9 +3,7 @@ title: "Homework Assignment 1"
 author: "Student:  "
 format: html
 toc: false
-
 ---
-
 
 # Instructions
 
